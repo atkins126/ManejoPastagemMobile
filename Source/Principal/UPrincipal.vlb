@@ -1,0 +1,15 @@
+﻿[dmDB.TUsuario]
+Visible=False
+
+[dmDB.TAuxCategoria]
+Visible=False
+
+[dmDB.TPasto]
+Visible=False
+
+[dmDB.TDetAnimalPasto]
+Visible=False
+
+[dmDB.TRetiro]
+Visible=False
+

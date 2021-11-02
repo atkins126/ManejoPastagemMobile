@@ -1,0 +1,78 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: 5CMJCnGllaZgcPj5rXpXk+9g37GML
+ 3rQWdxhynpFfl4=
+SHA-256-Digest-Manifest: fTdR1v8uhd/l1iP0qMIeXzAR/qxtJMC6UVdFKdyQZTw=
+Created-By: 1.8.0_60 (Oracle Corporation)
+
+Name: res/drawable-normal-v4/splash_image.png
+SHA-256-Digest: 4SefVUwBh2typAtzlQaGu9U9yAdhEiyEzKTvz1o4jwA=
+
+Name: AndroidManifest.xml
+SHA-256-Digest: nCgNdnz0fiU/OUWTbR6hCUv2Z8qXlDYCo+00ozQ1qK8=
+
+Name: res/drawable-xhdpi-v4/ic_notification.png
+SHA-256-Digest: XLCOMrcbL4VpyRcUmr9J6m6AJFM0gSpmVll3mxJQIJ8=
+
+Name: res/drawable-xxxhdpi-v4/ic_notification.png
+SHA-256-Digest: KDxIt3gD8T9FpAk+nwRRQgBr4e07rWBq7w5HsiR4gjE=
+
+Name: res/drawable-xlarge-v4/splash_image.png
+SHA-256-Digest: +ZU9oZTrQlbH/RPYdyqf1bLn8xBhS7fPgIec9cd0Py4=
+
+Name: res/drawable-xxxhdpi-v4/ic_launcher.png
+SHA-256-Digest: VYVi6iY4gemRLTt1vgAnNI+X+pa+wM39P0VaAF2QvDY=
+
+Name: assets/deployinfo/deployedassets.txt
+SHA-256-Digest: BxaIdJcP6nW+TCCto7GRSumrwWeqKT6fNPHV02aCmpA=
+
+Name: res/drawable-mdpi-v4/ic_notification.png
+SHA-256-Digest: yVEXDqKS1yRDTnf/Qhnqxyho6KD3kjVDCGfaJSxwF9s=
+
+Name: assets/internal/db1.db
+SHA-256-Digest: 8Iv4He5K42RO8QPQ05VI+j23hek9WwXpx08fSIBw5Ik=
+
+Name: res/drawable-hdpi-v4/ic_launcher.png
+SHA-256-Digest: JVSZDZcP6IljTWXySoFBl/bFyypU9yg9sZ5N4KZ6jFY=
+
+Name: res/drawable-large-v4/splash_image.png
+SHA-256-Digest: 0SfcjYvgiHTPTvb6lRoQ4xu8QI8YZaRCsd6mF7cCDDY=
+
+Name: res/drawable-mdpi-v4/ic_launcher.png
+SHA-256-Digest: rM+FWWguDH1FKBJk9FhTC91oFG3EbeYsfEAwBgZUk/w=
+
+Name: lib/armeabi-v7a/libManejo_de_Pastagem.so
+SHA-256-Digest: jKJgjC0oXR/rZ/IqOH4ln44HBvJCCM+AB//hwF4xNkc=
+
+Name: lib/mips/libManejo_de_Pastagem.so
+SHA-256-Digest: Lo4UQCLDOu2HW0xZWCwXlyrAW9KaL/13Sp9iIfUApMw=
+
+Name: res/drawable-hdpi-v4/ic_notification.png
+SHA-256-Digest: JNROMpARpfcD/mhwpIGsI7AKZE7rgNg/lYHAbmeaap8=
+
+Name: res/drawable-xhdpi-v4/ic_launcher.png
+SHA-256-Digest: IMk+CavxNgIZNNsFHk+BBPpQkzTp9KiA5u6DkL/TBvM=
+
+Name: res/drawable-xxhdpi-v4/ic_notification.png
+SHA-256-Digest: rWHaFxwRjIrEkdXTR0/S3FbBODGboLCbwQt/lzAwv0g=
+
+Name: lib/armeabi-v7a/gdbserver
+SHA-256-Digest: Y/MOcjjj/XybPA68IW8xq/T9YuaK23LQDxkeGprhWcU=
+
+Name: res/drawable-small-v4/splash_image.png
+SHA-256-Digest: CWAVTir5Lm3VkkVjs3RDp7of79JATMRM6B56TP4M/TE=
+
+Name: resources.arsc
+SHA-256-Digest: FgYp0n6Cvl01jzPN2WQHjqaXJeTEUm89cRpHD7vbYvM=
+
+Name: classes.dex
+SHA-256-Digest: BEnYHCVshaoYO9dZ2T4R/bVSn+QyTzXK8Ft9fHAW+4Q=
+
+Name: res/drawable-xxhdpi-v4/ic_launcher.png
+SHA-256-Digest: RSTpgQEcLZvb+kFz3xjXoB3ux5e1WggR2dhnt90+BmM=
+
+Name: res/drawable-ldpi-v4/ic_launcher.png
+SHA-256-Digest: Wd2TNvk0qWC6/wJ6KIz99e2fPnBwe3kG0vXotwpkDsw=
+
+Name: lib/armeabi/libManejo_de_Pastagem.so
+SHA-256-Digest: 0kECgo7EAJA8KrncRNswMN6pgKFeQhJO6enF6qoxaPo=
+
