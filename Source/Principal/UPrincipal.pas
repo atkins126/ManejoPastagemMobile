@@ -450,10 +450,10 @@ end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
- TThread.CreateAnonymousThread(procedure
- begin
-   TThread.Synchronize(nil,procedure
-   begin
+// TThread.CreateAnonymousThread(procedure
+// begin
+//   TThread.Synchronize(nil,procedure
+//   begin
       {$IFDEF MSWINDOWS}
         lblversao.text                 := GetVersaoArqWin;
         dmdb.CreateTablesVersao(GetVersaoArqWin);
@@ -477,8 +477,8 @@ begin
       recTop.AnimateFloatDelay('Opacity', 1, 0.7, 1);
       layInf.AnimateFloatDelay('Opacity', 1, 0.7, 1.3);
       layloginCenter.AnimateFloatDelay('Opacity', 1,0.7, 2);
-   end);
- end).Start;
+//   end);
+// end).Start;
  dmDB.qryConfig.Close;
  dmDB.qryConfig.Open;
  dmSync.host  := dmDB.qryConfigIP_SERVIDOR.AsString;
