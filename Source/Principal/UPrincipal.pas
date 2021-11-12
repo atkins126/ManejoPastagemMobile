@@ -194,8 +194,6 @@ var
 implementation
 
 {$R *.fmx}
-{$R *.SmXhdpiPh.fmx ANDROID}
-{$R *.NmXhdpiPh.fmx ANDROID}
 {$R *.XLgXhdpiTb.fmx ANDROID}
 
 uses UDmDB, UDmSyncData, UScorePasto;
