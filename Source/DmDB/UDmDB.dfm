@@ -577,6 +577,7 @@ object dmDB: TdmDB
   end
   object qryConfig: TFDQuery
     CachedUpdates = True
+    OnReconcileError = qryConfigReconcileError
     Connection = FCon
     SQL.Strings = (
       'select * from config')

@@ -9,7 +9,7 @@ uses
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs, FireDAC.FMXUI.Wait, Data.DB,
   FireDAC.Comp.Client,FMX.Dialogs,FMX.Forms,System.UITypes,FireDAC.DApt,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.Comp.DataSet,
-  System.IOUtils;
+  System.IOUtils, FireDAC.Phys.SQLiteWrapper.Stat;
 
 
 type
@@ -192,6 +192,8 @@ type
     procedure TDetAnimalPastoReconcileError(DataSet: TFDDataSet;
       E: EFDException; UpdateKind: TFDDatSRowState;
       var Action: TFDDAptReconcileAction);
+    procedure qryConfigReconcileError(DataSet: TFDDataSet; E: EFDException;
+      UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
   private
     { Private declarations }
   public
@@ -215,6 +217,7 @@ type
     procedure AbreScoreTable(dataBase: Tdate; idPasto: string);
     function  RetornaQtdAnimaisCategoria(idCategoria,idPasto: string): integer;
     function  RetornaIdPasto(NomePasto:string):string;
+    procedure AtualizaConfig(ipServ,PortaServ:string);
   end;
 
 var
@@ -272,6 +275,12 @@ begin
  end;
 end;
 
+procedure TdmDB.qryConfigReconcileError(DataSet: TFDDataSet; E: EFDException;
+  UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
+begin
+ ShowMessage(e.Message)
+end;
+
 function TdmDB.VerificaTabelaVazia(AnomeTable: string): Boolean;
 var
  qryAux : TFDQuery;
@@ -325,6 +334,17 @@ begin
   ExecSQL;
  end;
  qryAux.Free;
+end;
+
+procedure TdmDB.AtualizaConfig(ipServ, PortaServ: string);
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('update CONFIG set IP_SERVIDOR='+ipServ.QuotedString);
+   Add(',POTA_SERVIDOR='+PortaServ);
+   ExecSQL;
+ end;
 end;
 
 procedure Tdmdb.AbreScoreTable(dataBase: Tdate; idPasto: string);

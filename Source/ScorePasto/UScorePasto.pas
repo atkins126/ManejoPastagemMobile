@@ -89,31 +89,17 @@ type
     Layout14: TLayout;
     Layout16: TLayout;
     Layout17: TLayout;
-    Layout20: TLayout;
-    Label4: TLabel;
-    lblStatus: TLabel;
     Layout27: TLayout;
     cbxPasto: TComboBox;
     cbxCategoria: TComboBox;
-    SwStatus: TSwitch;
-    lblsws: TLabel;
     btnLimpaFiltro: TButton;
     recDadosAtuais: TRectangle;
     Rectangle7: TRectangle;
     imgFiltroLista: TImage;
     recFiltros: TRectangle;
     Layout1: TLayout;
-    edtRetiroF: TEdit;
-    Label17: TLabel;
-    Label9: TLabel;
-    edtPastoF: TEdit;
-    Label16: TLabel;
-    edtDataF: TDateEdit;
-    Button1: TButton;
     layDadosGeral: TLayout;
     img_seta: TImage;
-    Layout2: TLayout;
-    Image6: TImage;
     laydetanimaispasto: TLayout;
     Rectangle9: TRectangle;
     Layout18: TLayout;
@@ -137,7 +123,6 @@ type
     Layout29: TLayout;
     Layout30: TLayout;
     Label25: TLabel;
-    edtDataEnt: TDateEdit;
     tbiSaidas: TTabItem;
     Rectangle13: TRectangle;
     Rectangle14: TRectangle;
@@ -158,8 +143,6 @@ type
     Label14: TLabel;
     edtPesoMed: TEdit;
     edtQtdCab: TEdit;
-    LaytTrackClient: TLayout;
-    gridAnimais: TStringGrid;
     recBackEnd: TRectangle;
     Rectangle17: TRectangle;
     lblUltDataColeta: TLabel;
@@ -170,15 +153,11 @@ type
     BindSourceDB1: TBindSourceDB;
     BindingsList1: TBindingsList;
     BindSourceDB2: TBindSourceDB;
-    LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
-    Layout10: TLayout;
     Layout38: TLayout;
     Label13: TLabel;
     Label21: TLabel;
     lblTotalAnimais: TLabel;
     lblPesoMedio: TLabel;
-    layTrack: TLayout;
-    TrackScore: TTMSFMXTrackBar;
     btnListaAnimal: TRectangle;
     Image14: TImage;
     Label15: TLabel;
@@ -193,12 +172,8 @@ type
     Label27: TLabel;
     Rectangle18: TRectangle;
     Label28: TLabel;
-    Layout15: TLayout;
-    Label20: TLabel;
-    cbxTaloFolha: TComboBox;
     cbxCategoriaAtivos: TComboBox;
     edtDetTotalAnimalCat: TEdit;
-    Label26: TLabel;
     BindSourceDB3: TBindSourceDB;
     LinkFillControlToField1: TLinkFillControlToField;
     LinkFillControlToField2: TLinkFillControlToField;
@@ -209,9 +184,54 @@ type
     Layout13: TLayout;
     Label29: TLabel;
     Image15: TImage;
+    Layout21: TLayout;
+    Rectangle22: TRectangle;
+    edtDataF: TDateEdit;
+    Layout32: TLayout;
+    Rectangle24: TRectangle;
+    edtPastoF: TEdit;
+    btnBuscar: TRectangle;
+    LaybtnEntrar: TLayout;
+    Label30: TLabel;
+    Image16: TImage;
+    StyleBook1: TStyleBook;
+    recPasto: TRectangle;
+    ClearEditButton2: TClearEditButton;
+    Rectangle23: TRectangle;
+    edtRetiroF: TEdit;
+    ClearEditButton1: TClearEditButton;
+    Layout2: TLayout;
+    LaytTrackClient: TLayout;
+    layTrack: TLayout;
+    TrackScore: TTMSFMXTrackBar;
+    Layout10: TLayout;
+    Label9: TLabel;
+    Rectangle26: TRectangle;
+    lblStatus: TLabel;
+    cbxTaloFolha: TComboBox;
+    Rectangle27: TRectangle;
+    Image6: TImage;
+    Layout20: TLayout;
+    Label4: TLabel;
+    Rectangle25: TRectangle;
+    cbxStatus: TComboBox;
+    Rectangle28: TRectangle;
+    ListaAnimal: TListView;
+    Rectangle29: TRectangle;
+    Image17: TImage;
+    Label16: TLabel;
+    Rectangle30: TRectangle;
+    edtDataEnt: TDateEdit;
+    Rectangle31: TRectangle;
+    Rectangle32: TRectangle;
+    Rectangle33: TRectangle;
+    Rectangle34: TRectangle;
+    Label17: TLabel;
+    Rectangle35: TRectangle;
+    Rectangle36: TRectangle;
+    Rectangle37: TRectangle;
     procedure Image4Click(Sender: TObject);
     procedure Image2Click(Sender: TObject);
-    procedure SwStatusSwitch(Sender: TObject);
     procedure btnSalvarGrupoClick(Sender: TObject);
     procedure SearchEditButton2Click(Sender: TObject);
     procedure SearchEditButton1Click(Sender: TObject);
@@ -242,6 +262,11 @@ type
     procedure btnListaAnimalClick(Sender: TObject);
     procedure cbxCategoriaAtivosChange(Sender: TObject);
     procedure Image15Click(Sender: TObject);
+    procedure tbPrincipalChange(Sender: TObject);
+    procedure btnSaidaAnimalMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
+    procedure btnSaidaAnimalMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Single);
   private
     vStatusPasto,
      vIdPasto,vIdCategoria,
@@ -249,8 +274,8 @@ type
     procedure LimpaCampos;
     procedure Filtro;
     procedure BuscaDadosUltimaColeta(vIdPasto: string);
-    procedure SomarColunasAnimais;
     procedure CarregaComboPasto(idRetiro:string);
+    procedure GeraListaAnimais;
   public
     { Public declarations }
   end;
@@ -405,43 +430,12 @@ begin
  end;
 end;
 
-procedure TfrmScorePasto.SomarColunasAnimais;
-var
-  Sum : Double;
-  Val : Double;
-  Sum1 : Double;
-  Val1 : Double;
-  I   : Integer;
-begin
-  Sum  := 0;
-  Val  := 0;
-  Sum1 := 0;
-  Val1 := 0;
-  I   := 0;
-  for I := 0 to gridAnimais.RowCount-1 do
-  begin
-   if TryStrToFloat(gridAnimais.Cells[1,I],Val) then
-    Sum := Sum + Val;
-   if TryStrToFloat(gridAnimais.Cells[2,I],Val1) then
-    Sum1 := Sum1 + Val1;
-  end;
-  if I>0 then
-  begin
-    lblTotalAnimais.Text      := FloatToStr(Sum);
-    lblPesoMedio.Text         := FormatFloat('####,##0.00',(Sum1/gridAnimais.RowCount));
-  end
-  else
-  begin
-    lblTotalAnimais.Text         := '0';
-    lblTotalAnimais.Text         := '0';
-  end;
-end;
 
 procedure TfrmScorePasto.btnLimpaFiltroClick(Sender: TObject);
 begin
  cbxRetiro.ItemIndex:=-1;
  laymnuF.Visible  := false;
- SwStatus.Visible     := false;
+ cbxStatus.Visible     := false;
  lblStatus.Visible     := false;
  img_seta.Visible      := true;
  layDadosGeral.Visible := false;
@@ -449,16 +443,16 @@ end;
 
 procedure TfrmScorePasto.btnListaAnimalClick(Sender: TObject);
 begin
- if laygrid.Visible then
+ if cbxPasto.ItemIndex>-1 then
  begin
-   laygrid.Visible  := false;
-   layTrack.Visible := true;
- end
- else
- begin
-   laygrid.Visible  := true;
-   layTrack.Visible := false;
+  vIdPasto := dmDB.RetornaIdPasto(cbxPasto.Selected.Text);
+  dmDB.AbreDetAnimalPasto(vIdPasto);
+  GeraListaAnimais;
  end;
+ if laygrid.Visible then
+  laygrid.Visible  := false
+ else
+   laygrid.Visible  := true;
 end;
 
 procedure TfrmScorePasto.btnNovoFornClick(Sender: TObject);
@@ -470,7 +464,7 @@ begin
  img_seta.AnimateFloatDelay('Position.Y', 50, 0.5, 1, TAnimationType.Out, TInterpolationType.Back);
  img_seta.AnimateFloatDelay('Opacity', 1, 0.4, 0.9);
 
- SwStatus.Visible      := false;
+ cbxStatus.Visible      := false;
  lblStatus.Visible     := false;
  img_seta.Visible      := true;
  layDadosGeral.Visible := false;
@@ -490,6 +484,18 @@ begin
  tbAnimais.ActiveTab       := tbiSaidas;
 end;
 
+procedure TfrmScorePasto.btnSaidaAnimalMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Single);
+begin
+  (Sender as TRectangle).Opacity :=0.5;
+end;
+
+procedure TfrmScorePasto.btnSaidaAnimalMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Single);
+begin
+  (Sender as TRectangle).Opacity :=1;
+end;
+
 procedure TfrmScorePasto.btnSalvarGrupoClick(Sender: TObject);
 begin
  if cbxPasto.ItemIndex=-1 then
@@ -497,26 +503,30 @@ begin
     ShowMessage('Informe o  Pasto!!');
     Exit;
   end;
-  if edtQtdCab.Text.Length=0 then
+  if cbxStatus.ItemIndex=-1 then
   begin
-    ShowMessage('Informe a Qtde. Cabeça!!');
+    ShowMessage('Informe o  Pasto!!');
     Exit;
   end;
+
   if (strToInt(edtQtdCab.Text)>0) and (cbxCategoria.ItemIndex=-1) then
   begin
    ShowMessage('Informe a Categoria dos Animais!!');
    Exit;
   end;
+
   if (strToInt(edtQtdCab.Text)>0) and ((edtPesoMed.Text.Length=0)or(edtPesoMed.Text='0')) then
   begin
    ShowMessage('Informe o Peso Medio dos Animais!!');
    Exit;
   end;
-  if (strToInt(edtQtdCab.Text)>0) and (not SwStatus.IsChecked) then
+
+  if (strToInt(edtQtdCab.Text)>0) and (not cbxStatus.ItemIndex=0) then
   begin
    ShowMessage('Pasto não podes estar inativo com animais!!');
    Exit;
   end;
+
   if cbxTaloFolha.ItemIndex=-1 then
   begin
     ShowMessage('Selecione o Talhão x Folha!!');
@@ -545,11 +555,7 @@ begin
         dmdb.TScoreTablepesomedio.AsString            := dmDB.vPesoMedio;
        dmdb.TScoreTabletaloxfolha.AsInteger           := cbxTaloFolha.ItemIndex;
        dmdb.TScoreTablescore.AsFloat                  := TrackScore.Value;
-       dmdb.TScoreTablestatuspasto.AsString           := vStatusPasto;
-       if SwStatus.IsChecked then
-        dmdb.TScoreTablestatuspasto.AsInteger         := 1
-       else
-        dmdb.TScoreTablestatuspasto.AsInteger         := 0;
+       dmdb.TScoreTablestatuspasto.AsInteger          := cbxStatus.ItemIndex;
        dmdb.TScoreTableidcliente.AsString             := dmdb.vIdCliente;
        try
         dmdb.TScoreTable.post;
@@ -602,14 +608,18 @@ end;
 
 procedure TfrmScorePasto.cbxPastoChange(Sender: TObject);
 begin
+  cbxPasto.ListBox.ListItems[0].TextSettings.FontColor := TAlphaColorRec.Black;
+  cbxPasto.ListBox.ListItems[0].StyledSettings := cbxPasto.ListBox.ListItems[0].StyledSettings
+- [TStyledSetting.ssFontColor];
  if cbxPasto.ItemIndex>-1 then
  begin
   vIdPasto := dmDB.RetornaIdPasto(cbxPasto.Selected.Text);
   dmDB.AbreDetAnimalPasto(vIdPasto);
+  GeraListaAnimais;
   dmdb.AbreScoreTable(date,vIdPasto);
   if not dmdb.TScoreTable.IsEmpty then
   begin
-   MessageDlg('Pasto ja tem Score lançado para esse dia, deseja atualizar?', System.UITypes.TMsgDlgType.mtInformation,
+   MessageDlg('Pasto já tem Score lançado para esse dia, deseja atualizar?', System.UITypes.TMsgDlgType.mtInformation,
    [System.UITypes.TMsgDlgBtn.mbYes,
    System.UITypes.TMsgDlgBtn.mbNo
    ], 0,
@@ -633,7 +643,7 @@ begin
   end
   else
    dmdb.TScoreTable.Insert;
-  SwStatus.Visible      := true;
+  cbxStatus.Visible      := true;
   lblStatus.Visible     := true;
   img_seta.Visible      := false;
   layDadosGeral.Visible := true;
@@ -645,12 +655,12 @@ begin
   cbxCategoria.ItemIndex := cbxCategoria.Items.IndexOf(dmdb.TDadosPastocategoria.AsString);
   vIdCategoria           := dmdb.TDadosPastoidcategoria.AsString;
   edtPesoMed.Text        := dmdb.TDadosPastopesomedio.AsString;
-  SwStatus.IsChecked     := dmdb.TDadosPastostatus.AsInteger=1;
+  cbxStatus.ItemIndex    := dmdb.TDadosPastostatus.AsInteger;
   BuscaDadosUltimaColeta(vIdPasto);
  end
  else
  begin
-  SwStatus.Visible      := false;
+  cbxStatus.Visible      := false;
   lblStatus.Visible     := false;
   img_seta.Visible      := true;
   layDadosGeral.Visible := false;
@@ -664,6 +674,10 @@ begin
  dmdb.BuscaDadosUltimaColeta(vIdPasto);
  lblUltDataColeta.Text := dmdb.qryUltimaColetadatacoleta.Asstring;
  lblUltScore.Text      :=  dmdb.qryUltimaColetascore.AsString;
+ if dmdb.qryUltimaColetascore.AsString.Length>0 then
+  TrackScore.Value := dmdb.qryUltimaColetascore.AsFloat
+ else
+  TrackScore.Value :=1;
  lblUltQtdeCab.Text    :=  dmdb.qryUltimaColetaqtdcabeca.AsString;
  lblUltTaloxFolha.Text :=  dmdb.qryUltimaColetataloxfolhastr.AsString;
 end;
@@ -678,7 +692,7 @@ begin
  end
  else
   CarregaComboPasto('0');
- SwStatus.Visible      := false;
+ cbxStatus.Visible     := false;
  lblStatus.Visible     := false;
  img_seta.Visible      := true;
  layDadosGeral.Visible := false;
@@ -769,10 +783,10 @@ end;
 
 procedure TfrmScorePasto.FormShow(Sender: TObject);
 begin
+ recPasto.Height            :=frmScorePasto.Height-20;
  layTrack.Height            :=LaytTrackClient.Height;
  TrackScore.Height          :=LaytTrackClient.Height;
  laymnuF.Visible            := false;
- frmScorePasto.StyleBook    := frmPrincipal.StyleBook1;
  recBackEnd.Visible         := false;
  laydetanimaispasto.Visible := false;
  dmDB.TRetiro.Close;
@@ -785,6 +799,53 @@ begin
  edtDataF.Date           :=  date ;
  btnExcluiItem.Visible   :=  false;
  Filtro;
+end;
+
+procedure TfrmScorePasto.GeraListaAnimais;
+var
+ item   : TListViewItem;
+ txt    : TListItemText;
+ txtH   : TListItemPurpose;
+ img    : TListItemImage;
+begin
+ dmDB.TDetAnimalPasto.First;
+ ListaAnimal.Items.Clear;
+ while not dmDB.TDetAnimalPasto.eof do
+ begin
+   item := ListaAnimal.Items.Add;
+   with frmScorePasto do
+   begin
+     with item  do
+     begin
+       txt           := TListItemText(Objects.FindDrawable('Text3'));
+       if dmDB.TDetAnimalPastodataentrada.AsString.Length>0 then
+        txt.Text      :=  'Entrada: '+FormatDateTime('dd/mm/yyyy',dmDB.TDetAnimalPastodataentrada.AsDateTime)
+       else
+        txt.Text     :=  'Saída: '+FormatDateTime('dd/mm/yyyy',dmDB.TDetAnimalPastodatasaida.AsDateTime);
+       txt.TagString := dmDB.TDetAnimalPastoID.AsString;
+
+       txt      := TListItemText(Objects.FindDrawable('Text5'));
+       txt.Text := 'Categoria: ';
+       txt      := TListItemText(Objects.FindDrawable('Text6'));
+       txt.Text := dmDB.TDetAnimalPastocategoria.AsString;
+
+       txt      := TListItemText(Objects.FindDrawable('Text4'));
+       txt.Text := 'Qtde. Cab: ';
+       txt      := TListItemText(Objects.FindDrawable('Text7'));
+       txt.Text := dmDB.TDetAnimalPastoqtdanimais.AsString;
+
+       txt      := TListItemText(Objects.FindDrawable('Text10'));
+       txt.Text := 'Peso Med.: ';
+       txt      := TListItemText(Objects.FindDrawable('Text9'));
+       txt.Text := dmDB.TDetAnimalPastopesomedio.AsString;
+
+
+       img := TListItemImage(Objects.FindDrawable('Image14'));
+       img.Bitmap     := frmPrincipal.imgBoi.Bitmap;
+     end;
+     dmDB.TDetAnimalPasto.Next;
+   end;
+ end;
 end;
 
 procedure TfrmScorePasto.Image15Click(Sender: TObject);
@@ -876,20 +937,12 @@ begin
  Filtro;
 end;
 
-procedure TfrmScorePasto.SwStatusSwitch(Sender: TObject);
+procedure TfrmScorePasto.tbPrincipalChange(Sender: TObject);
 begin
- if SwStatus.IsChecked then
- begin
-   vStatusPasto                  :='1';
-   lblsws.TextSettings.HorzAlign := TTextAlign.Leading;
-   lblsws.Text                   := 'Ativo';
- end
+ if tbPrincipal.TabIndex=0 then
+  imgFiltroLista.Visible := false
  else
- begin
-   vStatusPasto                  :='0';
-   lblsws.TextSettings.HorzAlign := TTextAlign.Trailing;
-   lblsws.Text                   := 'Inativo';
- end;
+  imgFiltroLista.Visible := true;
 end;
 
 end.

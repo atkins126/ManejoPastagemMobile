@@ -32,14 +32,12 @@ type
     Layout1: TLayout;
     img_seta: TImage;
     layloginCenter: TLayout;
-    Rectangle1: TRectangle;
     Layout4: TLayout;
     Layout3: TLayout;
     Label1: TLabel;
     Layout6: TLayout;
     Layout7: TLayout;
     Label2: TLabel;
-    cbxLogin: TComboBox;
     Layout5: TLayout;
     Layout8: TLayout;
     Label3: TLabel;
@@ -58,8 +56,6 @@ type
     laymnu: TLayout;
     Layout11: TLayout;
     Rectangle5: TRectangle;
-    Layout12: TLayout;
-    Layout13: TLayout;
     layInfMnu: TLayout;
     Rectangle10: TRectangle;
     lblVersao: TLabel;
@@ -107,7 +103,6 @@ type
     Image17: TImage;
     Label19: TLabel;
     imgMnu: TImage;
-    StyleBook1: TStyleBook;
     Rectangle3: TRectangle;
     laySelectSync: TLayout;
     imgSync: TImage;
@@ -131,7 +126,6 @@ type
     AcLeft: TAction;
     AcRigth: TAction;
     mlog: TMemo;
-    edtSenha: TEdit;
     LinkFillControlToField1: TLinkFillControlToField;
     Layout16: TLayout;
     bntConfiguracao: TRectangle;
@@ -151,8 +145,19 @@ type
     imgScore: TImage;
     Layout17: TLayout;
     imgListaPreto: TImage;
+    Rectangle1: TRectangle;
+    cbxLogin: TComboBox;
+    LinkFillControlToField: TLinkFillControlToField;
+    Rectangle6: TRectangle;
+    edtSenha: TEdit;
     ClearEditButton1: TClearEditButton;
     PasswordEditButton1: TPasswordEditButton;
+    Rectangle9: TRectangle;
+    Rectangle11: TRectangle;
+    StyleBook1: TStyleBook;
+    ClearEditButton2: TClearEditButton;
+    ClearEditButton3: TClearEditButton;
+    imgBoi: TImage;
     procedure btnEntrarMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
     procedure btnEntrarMouseDown(Sender: TObject; Button: TMouseButton;
@@ -177,6 +182,7 @@ type
     procedure btnSyncClick(Sender: TObject);
     procedure btnScoreClick(Sender: TObject);
     procedure Image4Click(Sender: TObject);
+    procedure cbxLoginChange(Sender: TObject);
   private
     {$IF DEFINED(iOS) or DEFINED(ANDROID)}
      function  GetVersaoArq: string;
@@ -243,11 +249,8 @@ if edtIpServidorDados.Text.IsEmpty then
   edtPortaServidorDados.SetFocus;
   Exit;
  end;
- dmDB.qryConfig.Edit;
- dmdb.qryConfigIP_SERVIDOR.AsString      := edtIpServidorDados.Text;
- dmdb.qryConfigPOTA_SERVIDOR.AsString    := edtPortaServidorDados.Text;
  try
-   dmdb.qryConfig.ApplyUpdates(-1);
+   dmDB.AtualizaConfig(edtIpServidorDados.Text,edtPortaServidorDados.Text);
    dmSync.host  := edtIpServidorDados.Text;
    dmSync.Porta := edtPortaServidorDados.Text;
  except
@@ -443,15 +446,23 @@ begin
  dmSync.TScorePasto.Close;
  dmSync.TScorePasto.Open;
  lblScorePasto.Text   := 'Score Pasto Pendente :'+IntToStr(dmSync.TScorePasto.RecordCount);
+ mlog.Lines.Clear;
  MudarAba(tbiSync,sender);
+end;
+
+procedure TfrmPrincipal.cbxLoginChange(Sender: TObject);
+begin
+cbxLogin.ListBox.ListItems[0].TextSettings.FontColor := TAlphaColorRec.Black;
+  cbxLogin.ListBox.ListItems[0].StyledSettings := cbxLogin.ListBox.ListItems[0].StyledSettings
+- [TStyledSetting.ssFontColor];
 end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
-// TThread.CreateAnonymousThread(procedure
-// begin
-//   TThread.Synchronize(nil,procedure
-//   begin
+ TThread.CreateAnonymousThread(procedure
+ begin
+   TThread.Synchronize(nil,procedure
+   begin
       {$IFDEF MSWINDOWS}
         lblversao.text                 := GetVersaoArqWin;
         dmdb.CreateTablesVersao(GetVersaoArqWin);
@@ -475,8 +486,8 @@ begin
       recTop.AnimateFloatDelay('Opacity', 1, 0.7, 1);
       layInf.AnimateFloatDelay('Opacity', 1, 0.7, 1.3);
       layloginCenter.AnimateFloatDelay('Opacity', 1,0.7, 2);
-//   end);
-// end).Start;
+   end);
+ end).Start;
  dmDB.qryConfig.Close;
  dmDB.qryConfig.Open;
  dmSync.host  := dmDB.qryConfigIP_SERVIDOR.AsString;

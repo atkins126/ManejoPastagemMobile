@@ -5,9 +5,28 @@
     </ProjectExtensions>
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'">906b649b</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='Android64'"/>
+        <DeviceId Condition="'$(Platform)'=='Android64'">906b649b</DeviceId>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Manejo_de_Pastagem.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\</RemoteDir>
+            <RemoteName>Manejo_de_Pastagem.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="..\..\db\db1.db" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\</RemoteDir>
+            <RemoteName>db1.db</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\midas.dll" Condition="'$(Config)'=='Release'">
             <RemoteDir>Manejo_de_Pastagem\</RemoteDir>
             <RemoteName>midas.dll</RemoteName>
@@ -84,10 +103,10 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Android'">
-        <DeployFile Include="..\..\..\Deploy\strings.xml" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\..\Deploy\colors.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Manejo_de_Pastagem\res\values\</RemoteDir>
-            <RemoteName>strings.xml</RemoteName>
-            <DeployClass>Android_Strings</DeployClass>
+            <RemoteName>colors.xml</RemoteName>
+            <DeployClass>Android_Colors</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -120,6 +139,25 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\..\Deploy\libManejo_de_Pastagem.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libManejo_de_Pastagem.so</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="..\..\Deploy\classes.dex" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\classes\</RemoteDir>
+            <RemoteName>classes.dex</RemoteName>
+            <DeployClass>AndroidClassesDexFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="..\..\delphi\144144.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Manejo_de_Pastagem\res\drawable-xxhdpi\</RemoteDir>
             <RemoteName>ic_launcher.png</RemoteName>
@@ -142,15 +180,6 @@
             <RemoteDir>Manejo_de_Pastagem\library\lib\mips\</RemoteDir>
             <RemoteName>libManejo_de_Pastagem.so</RemoteName>
             <DeployClass>AndroidLibnativeMipsFile</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\..\..\Deploy\classes.dex" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>Manejo_de_Pastagem\classes\</RemoteDir>
-            <RemoteName>classes.dex</RemoteName>
-            <DeployClass>AndroidClassesDexFile</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -183,15 +212,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="..\..\..\Deploy\colors.xml" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>Manejo_de_Pastagem\res\values\</RemoteDir>
-            <RemoteName>colors.xml</RemoteName>
-            <DeployClass>Android_Colors</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Manejo_de_Pastagem\library\lib\armeabi\</RemoteDir>
             <RemoteName>libManejo_de_Pastagem.so</RemoteName>
@@ -201,10 +221,28 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\..\Deploy\AndroidManifest.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\</RemoteDir>
+            <RemoteName>AndroidManifest.xml</RemoteName>
+            <DeployClass>ProjectAndroidManifest</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_24x24.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Manejo_de_Pastagem\res\drawable-mdpi\</RemoteDir>
             <RemoteName>ic_notification.png</RemoteName>
             <DeployClass>Android_NotificationIcon24</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\..\Deploy\strings.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\res\values\</RemoteDir>
+            <RemoteName>strings.xml</RemoteName>
+            <DeployClass>Android_Strings</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -228,6 +266,24 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="classes.dex" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\classes\</RemoteDir>
+            <RemoteName>classes.dex</RemoteName>
+            <DeployClass>AndroidClassesDexFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\..\Deploy\styles-v21.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\res\values-v21\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStylesV21</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Manejo_de_Pastagem\res\drawable-large\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
@@ -245,25 +301,6 @@
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\..\..\Deploy\AndroidManifest.xml" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>Manejo_de_Pastagem\</RemoteDir>
-            <RemoteName>AndroidManifest.xml</RemoteName>
-            <DeployClass>ProjectAndroidManifest</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="..\..\..\Deploy\libManejo_de_Pastagem.so" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>Manejo_de_Pastagem\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>libManejo_de_Pastagem.so</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
         </DeployFile>
         <DeployFile Include="..\..\delphi\3636.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Manejo_de_Pastagem\res\drawable-ldpi\</RemoteDir>
@@ -287,6 +324,15 @@
             <RemoteDir>Manejo_de_Pastagem\res\drawable-normal\</RemoteDir>
             <RemoteName>splash_image.png</RemoteName>
             <DeployClass>Android_SplashImage470</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\..\delphi\192192.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Manejo_de_Pastagem\res\drawable-xxxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon192</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
